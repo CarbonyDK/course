@@ -1,5 +1,6 @@
 let string = 'some test string';
 
+
 //TASK 1
 let firstLetter = string[0].toUpperCase();
 let secondLetter = string[string.length - 1].toUpperCase();
