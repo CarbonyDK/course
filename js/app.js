@@ -49,7 +49,6 @@ const phone = {
 
 phone.price = 1000;
 phone.currency = 'dollar';
-
 phone.details = {
   model: 'XR',
   color: 'red'
