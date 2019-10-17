@@ -1,305 +1,177 @@
 /*
 
-    1. Дан объект **car**.
-    Написать условие если поле **lastService** больше 5 месяцев
-    (*из строки нужно достать число*) то нужно вывести в консоль
-    сообщение 'Need Repair' и свойство **needRepair** в объекте
-    **car** изменить на **true**; иначе изменить на **false**.
+    1. На основе массива **map** и массива **users** собрать
+    новый массив объектов где в каждом объекте будут только
+    те свойства которые перечислены в массиве **map**.
+
+    На выходе мы должны получить массив вида:
+
+    [ { _id: ..., name: ..., isActive: ..., balance: ... }, ... ];
 
 */
 
-let car = {
-    name: 'Lexus',
-    age: 10,
-    lastService: '1 month',
-    create: 2008,
-    needRepair: false
-};
-
-function checkCarService(car) {
-    if (parseInt(car.lastService) > 5) {
-        console.log('Need Repair');
-        return true;
-    } else {
-        return false;
-    }
-}
-
-car.needRepair = checkCarService(car);
-
-
-
-/*
-
-    2. Дан следующий код.
-    Написать условие **если цена товара больше или равна
-    минимальной цене и меньше или равна максимальной цене**
-    то вывести в консоль название этого товара, иначе
-    вывести в консоль что товар не найден.
-
-*/
-
-let product = {
-    name: 'Яблоко',
-    price: '10$'
-};
-
-let min = 10; // минимальная цена
-let max = 20; // максимальная цена
-
-function findProduct(item) {
-    if (parseFloat(item.price) >= min && parseFloat(item.price) <= max) {
-        console.log(item.name);
-    } else {
-        console.log('Товар не найден.');
-    }
-}
-
-findProduct(product);
-
-
-
-/*
-
-    3. На основе строки
-    Cделать новую строку, где каждое слово начинается
-    с большой буквы, а пробелы удалены. Использовать цикл **for.**
-
-*/
-
-let str = 'JavaScript is a pretty good language';
-
-let str2;
-
-function makeNewStr(str) {
-    let arrStr = str.split(' ');
-    for (let i = 0; i < arrStr.length; i++) {
-        arrStr[i] = arrStr[i][0].toUpperCase() + arrStr[i].slice(1);
-    }
-    return arrStr.join('');
-}
-
-str2 = makeNewStr(str);
-console.log(str2);
-
-
-
-/*
-
-    4. Создать функцию, которая принимает массив, а возвращает
-    новый массив с дублированными элементами входного массива:
-
-    *doubleArray([1,2,3]) // [1,2,3,1,2,3]*
-
-*/
-
-function doubleArray(arr) {
-    let newArr = [];
-
-    for (let i = 0; i < arr.length; i++) {
-        newArr.push(arr[i]);
-    }
-
-    for (let i = 0; i < arr.length; i++) {
-        newArr.push(arr[i]);
-    }
-
-    return newArr;
-}
-
-console.log(doubleArray([1,2,3]));
-
-
-
-/*
-
-    5. Создать функцию, которая принимает произвольное (любое)
-    число массивов и удаляет из каждого массива первый элемент,
-    а возвращает массив из оставшихся значений:
-
-    *changeCollection([1,2,3], [‘a’, ’b’, ‘c’]) → [ [2,3], [‘b’, ‘c’] ],*
-    *changeCollection([1,2,3]) → [ [2,3] ]* и т.д*.*
-
-*/
-
-function changeCollection() {
-    let result = [];
-
-    for (let i = 0; i < arguments.length; i++) {
-        arguments[i].shift();
-        result.push(arguments[i]);
-    }
-
-    return result;
-}
-
-console.log(changeCollection([1,2,3], ['a', 'b', 'c']));
-
-
-
-/*
-
-    6. Дан массив пользователей.
-    Создать функцию которая принимает массив пользователей,
-    поле которое по которому хочу фильтровать, значение на
-    которое хочу фильтровать. Возвращать новый массив с
-    пользователями соответсвующие указанным параметрам.
-    Пример результата:
-
-    funcGetUsers(users, "gender", "male"); // [ {name: “Denis”, age: “29”, gender: “male”} , {name: “Ivan”, age: “20”, gender: “male”} ]
-
-*/
-
+const map = ["_id", "name", "isActive", "balance"];
 const users = [
     {
-        "_id": "5d1c3860aa841704d3245513",
-        "isActive": false,
-        "balance": 2764.35,
-        "age": 33,
-        "name": "Allie Blair",
-        "gender": "female",
-        "company": "PHOTOBIN",
-        "email": "allieblair@photobin.com",
-        "phone": "+1 (951) 566-2987",
-        "registered": "2018-11-30T02:29:00 -02:00"
-    },
-    {
-        "_id": "5d1c386095ffb689687f2db9",
-        "isActive": false,
-        "balance": 3276.25,
-        "age": 22,
-        "name": "Yesenia Leblanc",
-        "gender": "female",
-        "company": "SKINSERVE",
-        "email": "yesenialeblanc@skinserve.com",
-        "phone": "+1 (947) 446-2840",
-        "registered": "2015-10-31T01:10:31 -02:00"
-    },
-    {
-        "_id": "5d1c3860e73ff2a338722e81",
+        "_id": "5d220b10e8265cc978e2586b",
         "isActive": true,
-        "balance": 1868.65,
+        "balance": 2853.33,
+        "age": 20,
+        "name": "Buckner Osborne",
+        "gender": "male",
+        "company": "EMPIRICA",
+        "email": "bucknerosborne@empirica.com",
+        "phone": "+1 (850) 411-2997",
+        "registered": "2018-08-13T04:28:45 -03:00"
+    },
+    {
+        "_id": "5d220b10144ef972f6c2b332",
+        "isActive": true,
+        "balance": 1464.63,
         "age": 38,
-        "name": "Mamie Kramer",
+        "name": "Rosalie Smith",
         "gender": "female",
-        "company": "EARBANG",
-        "email": "mamiekramer@earbang.com",
-        "phone": "+1 (885) 564-3305",
-        "registered": "2014-06-03T09:36:40 -03:00"
+        "company": "KATAKANA",
+        "email": "rosaliesmith@katakana.com",
+        "phone": "+1 (943) 463-2496",
+        "registered": "2016-12-09T05:15:34 -02:00"
     },
     {
-        "_id": "5d1c386000e4f2fc62be1b1e",
-        "isActive": true,
-        "balance": 1003.15,
-        "age": 32,
-        "name": "Crawford Bryant",
-        "gender": "male",
-        "company": "DIGIRANG",
-        "email": "crawfordbryant@digirang.com",
-        "phone": "+1 (889) 408-2141",
-        "registered": "2015-01-15T05:20:21 -02:00"
-    },
-    {
-        "_id": "5d1c386008ff236a315d638b",
+        "_id": "5d220b1083a0494655cdecf6",
         "isActive": false,
-        "balance": 3045.41,
-        "age": 36,
-        "name": "Helene Holland",
-        "gender": "female",
-        "company": "HYDROCOM",
-        "email": "heleneholland@hydrocom.com",
-        "phone": "+1 (937) 554-2040",
-        "registered": "2014-09-15T08:22:59 -03:00"
-    },
-    {
-        "_id": "5d1c3860b4c27c4d5fdb6c1f",
-        "isActive": true,
-        "balance": 1693.51,
-        "age": 23,
-        "name": "Hernandez Osborn",
+        "balance": 2823.39,
+        "age": 40,
+        "name": "Estrada Davenport",
         "gender": "male",
-        "company": "TERRASYS",
-        "email": "hernandezosborn@terrasys.com",
-        "phone": "+1 (965) 595-3942",
-        "registered": "2016-08-06T12:19:01 -03:00"
+        "company": "EBIDCO",
+        "email": "estradadavenport@ebidco.com",
+        "phone": "+1 (890) 461-2088",
+        "registered": "2016-03-04T03:36:38 -02:00"
     }
 ];
 
-function funcGetUsers(usersArr, key, value) {
-    let result = [];
+const newUsers = users.map(
+    (element) => map.reduce(
+        (accumulator, value) => {
+            accumulator[value] = element[value];
+            return accumulator;
+        }, {}
+    )
+);
 
-    for (let element of usersArr) {
-        if (element[key] === value) {
-            result.push({
-                name: element.name,
-                age: element.age,
-                [key]: value
-            });
-        }
-    }
-
-    return result;
-}
-
-console.log(funcGetUsers(users, 'gender', 'male'));
+console.log(newUsers);
 
 
 
 /*
 
-    7. Проверить как изменится объект obj и найти объяснение.
+    2. Дан массив объектов, где каждый объект содержит информацию о букве
+    и месте её положения в строке {буква: “a”, позиция_в_предложении: 1}:
 
-    ОБЪЯСНЕНИЕ:
+    [{char:"a",index:12}, {char:"w",index:8}, {char:"Y",index:10}, {char:"p",index:3}, {char:"p",index:2},
+    {char:"N",index:6}, {char:" ",index:5}, {char:"y",index:4}, {char:"r",index:13}, {char:"H",index:0},
+    {char:"e",index:11}, {char:"a",index:1}, {char:" ",index:9}, {char:"!",index:14}, {char:"e",index:7}]
 
-    Мы передаем ссылку на объект obj в аргументе x функции, затем через ссылку добавляем поле b в объект obj.
-    Действием x = null мы переопределяем саму переменную-аргумент функции, и теперь она содержит не ссылку на
-    объект, а значение null. Сам объект obj остался нетронутым.
+    Напишите функцию, которая из элементов массива соберет и вернёт строку,
+    основываясь на index каждой буквы. Например:
+
+    // [{char:"H",index:0}, {char:"i",index: 1}, {char:"!",index:2}] → "Hi!"
 
 */
 
-const obj = {};
+const letterCodes = [{char:"a",index:12}, {char:"w",index:8}, {char:"Y",index:10}, {char:"p",index:3}, {char:"p",index:2},
+                    {char:"N",index:6}, {char:" ",index:5}, {char:"y",index:4}, {char:"r",index:13}, {char:"H",index:0},
+                    {char:"e",index:11}, {char:"a",index:1}, {char:" ",index:9}, {char:"!",index:14}, {char:"e",index:7}];
 
-(function(x) {
-    x.b = 1;
-    x = null;
-})(obj);
+const stringFromCodes = letterCodes.sort((a, b) => a.index - b.index);
 
-console.log(obj);
+console.log(stringFromCodes); //Happy New Year!
 
 
 
 /*
 
-    8. Создать объект, у которого будет цена товара и его скидка,
-    а также два метода: для получения цены и для расчета цены с учетом скидки.
+    3. Организовать функцию getInfo, которая принимает объект вида:
+
+    { name: ..., info: { employees: [...], partners: [ … ] } }
+
+    и выводит в консоль имя (если имени нет, показывать ‘Unknown’)
+    и первые две компании из массива partners:
+
+    // getInfo(organisation); → Name: Google Partners: Microsoft Facebook
 
 */
 
-const price = {
-    price: 10,
-    discount: '15%',
-    getPrice() {
-        return this.price;
-    },
-    getPriceWithDiscount() {
-        return (100 - parseFloat(this.discount)) * this.price / 100;
+const organisation = {
+    name: 'Google',
+    info: {
+        employees: ['Vlad', 'Olga'],
+        partners: ['Microsoft', 'Facebook', 'Xing']
     }
 };
 
-console.log(price.getPrice()); // 10
-console.log(price.getPriceWithDiscount()); // 8.5
+function getInfo({name = `Unknown`, info: {partners}}) {
+    console.log(`Name: ${name} \nPartners: ${ partners.slice(0, 2).join(' ') }`);
+}
+
+getInfo(organisation);
 
 
 
 /*
 
-    9. Даны объект и функция.
-    Не изменяя функцию или объект, получить результат функции
-    *getSquare* для объекта sizes
+    4. Дан объект.
+    Сделать так что-бы при получении или изменении свойства name
+    в свойствах lastGet и lastUpdate сохранялась дата последнего
+    получения или последнего обновления соответсвенно.
 
 */
 
-let sizes = { width: 5, height: 10 },
-    getSquare = function () { return this.width * this.height };
+const person = {
+    _name: 'Denis',
+    age: 30,
+    lastGet: '',
+    lastUpdate: ''
+};
 
-console.log(getSquare.call(sizes));
+Object.defineProperty(person, 'name', {
+   get: function () {
+       this.lastGet = new Date();
+       return this._name;
+   },
+   set: function (value) {
+       this.lastUpdate = new Date();
+       this._name = value;
+   }
+});
+
+console.log(person.name);
+
+
+
+/*
+
+    5. Дан объект.
+    Сделать геттер который будет возвращать brand и model в виде
+    строки "Apple iPhone 7" а также сделать сеттер в который будет
+    передаваться строка например "Samsung S8 Gold" и в объекте в
+    поле brand будет записано "Samsung" а в поле model будет записано "S8 Gold"
+
+*/
+
+const product = {
+    brand: 'Apple',
+    model: 'iPhone 7',
+    price: '$300',
+    get phoneName() {
+        return `${this.brand} ${this.model}`;
+    },
+    set phoneName(value) {
+        value = value.split(' ');
+        this.brand = value.splice(0, 1).join();
+        this.model = value.join(' ');
+    }
+};
+
+product.phoneName = 'Samsung Galaxy S8';
+console.log(product.brand, product.model);
