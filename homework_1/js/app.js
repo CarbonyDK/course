@@ -1,5 +1,5 @@
-let string = 'some test string';
 
+<<<<<<< HEAD:homework_1/js/app.js
 
 //TASK 1
 let firstLetter = string[0].toUpperCase();
@@ -55,3 +55,5 @@ phone.details = {
 };
 
 console.log(phone);
+=======
+>>>>>>> master:js/app.js
