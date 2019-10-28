@@ -82,26 +82,6 @@ newsForm.addEventListener('submit', function (e) {
     initNews(country.value, category.value, search.value);
 });
 
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('kek');
-  }, 3000);
-});
-
-const promise2 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('kek2');
-    }, 5000);
-});
-
-const promise3 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        reject('kek3');
-    }, 6000);
-});
-
-
-Promise.all([promise, promise2, promise3]).then((val) => console.log(val)).catch(error => console.log(error));
 
 
 // Functions
