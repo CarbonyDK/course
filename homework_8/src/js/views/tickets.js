@@ -1,9 +1,11 @@
 import currencyUI from './currency';
+import favorites from '../store/favorites';
 
 class TicketsUI {
-  constructor(currency) {
+  constructor(currency, favoritesStore) {
     this.container = document.querySelector('.tickets-sections .row');
     this.currencySymbol = currency.currencySymbol;
+    this.checkFavorite = favoritesStore.checkAdded.bind(favoritesStore);
   }
 
   renderTickets(tickets) {
@@ -16,8 +18,9 @@ class TicketsUI {
 
     let fragment = '';
 
-    tickets.forEach(ticket => {
-      const template = TicketsUI.ticketTemplate(ticket, this.currencySymbol);
+    tickets.forEach((ticket, index) => {
+      const added = this.checkFavorite(ticket.key);
+      const template = TicketsUI.ticketTemplate(ticket, index, this.currencySymbol, added);
       fragment += template;
     });
 
@@ -39,7 +42,8 @@ class TicketsUI {
     `;
   }
 
-  static ticketTemplate(ticket, currency) {
+  static ticketTemplate(ticket, index, currency, added) {
+    const button = (added) ? `<a data-ticket=${index} href="#" class="waves-effect waves-light btn-small darken-1 ml-auto">Added to favorites</a>` :  `<a data-ticket=${index} href="#" class="waves-effect waves-light btn-small green darken-1 add-favorite ml-auto">Add to favorites</a>`;
     return `
     <div class="col s12 m6">
       <div class="card ticket-card">
@@ -65,12 +69,13 @@ class TicketsUI {
           <span class="ticket-transfers">Пересадок: ${ticket.transfers}</span>
           <span class="ticket-flight-number">Номер рейса: ${ticket.flight_number}</span>
         </div>
+        ${button}
       </div>
     </div>
     `;
   }
 }
 
-const ticketsUI = new TicketsUI(currencyUI);
+const ticketsUI = new TicketsUI(currencyUI, favorites);
 
 export default ticketsUI;
