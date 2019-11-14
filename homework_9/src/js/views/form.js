@@ -11,6 +11,7 @@ function inputErrorTemplate(msg) {
 /**
  * Function showInputError. Add input error
  * @param {HTMLInputElement} el
+ * @param {String} message
  */
 export function showInputError(el, message) {
   if (!el.classList.contains('is-invalid')) {

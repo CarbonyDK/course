@@ -11,11 +11,8 @@ export async function login(email, password) {
       `/auth/login`,
       JSON.stringify({ email, password }),
     );
-
-    console.log(response);
     return response.data;
   } catch (err) {
-    console.log(err);
     return Promise.reject(err);
   }
 }
@@ -52,13 +49,11 @@ export async function register(regEmail, regPassword, first_name, last_name, pho
       }),
     );
 
-    console.log(response);
     if (response.error === true) {
       return Promise.reject(response.data.error);
     }
     return response.data;
   } catch (err) {
-    console.log(err);
     return Promise.reject(err);
   }
 }

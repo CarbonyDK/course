@@ -62,7 +62,6 @@ export function closeNotify(index) {
   }
 
   if (!alert) {
-    console.warn('Alert not fount');
     return;
   }
 

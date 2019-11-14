@@ -16,20 +16,21 @@ const { form, inputEmail, inputPassword, regForm, regEmail, regPassword, regPass
 const inputs = [inputEmail, inputPassword];
 const regInputs = [regEmail, regPassword, regPasswordRepeat, first_name, last_name, phone, nickname, gender_orientation, date_of_birth, country, city];
 
-const countries = ['UK', 'Ukraine'];
-
 // Events
+let countriesArr = [];
+initCountries(country).then(data => countriesArr = data);
+
 form.addEventListener('submit', e => {
   e.preventDefault();
   onSubmit();
 });
 regForm.addEventListener('submit', e => {
   e.preventDefault();
-  onRegSubmit();
+  onRegSubmit(countriesArr);
 });
 inputs.forEach(el => el.addEventListener('focus', () => removeInputError(el)));
 regInputs.forEach(el => el.addEventListener('focus', () => removeInputError(el)));
-initCountries();
+country.addEventListener('input', () => onSetCountry(country, city, countriesArr));
 
 // Handlers
 async function onSubmit() {
@@ -53,12 +54,15 @@ async function onSubmit() {
   }
 }
 
-async function onRegSubmit() {
+async function onRegSubmit(countriesArr) {
   const isValidForm = regInputs.every((el, i) => {
     let isValidInput = validate(el);
     if (el.id === 'password-repeat' && el.value !== regInputs[i - 1].value) {
       isValidInput = false;
-      showInputError(el, 'PR');
+      showInputError(el, 'Passwords are not similar');
+    }
+    if (el.id === 'country' && !countriesArr.includes(el.value)) {
+      isValidInput = false;
     }
     if (!isValidInput) {
       showInputError(el);
@@ -77,28 +81,37 @@ async function onRegSubmit() {
   }
 }
 
-async function initCountries() {
+function onSetCountry(countryInput, cityInput, countriesArr) {
+  const value = countryInput.value;
+  if (countriesArr.includes(value)) {
+    const countryIndex = countriesArr.indexOf(value) + 1;
+    initCities(cityInput, countryIndex);
+  } else cityInput.setAttribute('disabled', 'true');
+}
+
+async function initCountries(countryInput) {
   try {
     const countries = await getCountries();
-    const countriesArr = Object.values(countries);
-    $(country).autocomplete({
-      source: countriesArr,
+    countryInput.removeAttribute('disabled');
+    $(countryInput).autocomplete({
+      source: countries,
       select: (e, ui) => {
-        const countryIndex = countriesArr.indexOf(ui.item.value) + 1;
+        const countryIndex = countries.indexOf(ui.item.value) + 1;
         initCities(countryIndex);
       },
     });
+    return countries;
   } catch (err) {
     notify({ msg: 'Error getting countries', className: 'alert-danger' });
   }
 }
 
-async function initCities(countryIndex) {
+async function initCities(cityInput, countryIndex) {
   try {
     const cities = await getCities(countryIndex);
     const citiesArr = Object.values(cities);
-    city.removeAttribute('disabled');
-    $(city).autocomplete({
+    cityInput.removeAttribute('disabled');
+    $(cityInput).autocomplete({
       source: citiesArr,
     });
   } catch (err) {

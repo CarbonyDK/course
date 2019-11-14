@@ -27,7 +27,6 @@ function getClearResponse(res) {
 }
 
 function onError(err) {
-    console.dir(err);
     return Promise.reject(err);
 }
 

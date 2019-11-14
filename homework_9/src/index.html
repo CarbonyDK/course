@@ -66,30 +66,31 @@
                   <div class="col form-group">
                     <label for="firstname">First Name</label>
                     <input type="text" class="form-control" id="firstname" placeholder="First Name"
-                      data-invalid-message="Only letters." data-required="name" />
+                      data-invalid-message="Only English or Russian letters. 8-20 chars." data-required="name" />
                   </div>
                   <div class="col form-group">
                     <label for="lastname">Last Name</label>
                     <input type="text" class="form-control" id="lastname" placeholder="Last Name"
-                      data-invalid-message="Only letters." data-required="name" />
+                      data-invalid-message="Only English or Russian letters. 8-20 chars." data-required="name" />
                   </div>
                 </div>
                 <div class="row">
                   <div class="col form-group">
                     <label for="phone">Phone Number</label>
                     <input type="number" class="form-control" id="phone" placeholder="Phone Number"
-                      data-invalid-message="Format: 0661231231" data-required="phone" />
+                      data-invalid-message="Use only valid format: 0661231231" data-required="phone" />
                   </div>
                   <div class="col form-group">
                     <label for="nickname">Nickname</label>
                     <input type="text" class="form-control" id="nickname" placeholder="Nickname"
-                      data-invalid-message="Please use only English letters and numbers." data-required="nickname" />
+                      data-invalid-message="Please use only English letters and numbers. 5-20 chars."
+                      data-required="nickname" />
                   </div>
                 </div>
                 <div class="row">
                   <div class="col form-group">
                     <label for="gender">Gender</label>
-                    <select class="form-control" id="gender" data-invalid-message="Invalid data."
+                    <select class="form-control" id="gender" data-invalid-message="Invalid data. Choose male or female."
                       data-required="gender">
                       <option value="male">Male</option>
                       <option value="female">Female</option>
@@ -98,19 +99,19 @@
                   <div class="col form-group">
                     <label for="birthdate">Birth Date</label>
                     <input type="date" class="form-control" id="birthdate" placeholder="Birth Date"
-                      data-invalid-message="Format: 12.12.2000" data-required="birthdate" />
+                      data-invalid-message="Use only valid format: 12.12.2000" data-required="birthdate" />
                   </div>
                 </div>
                 <div class="row">
                   <div class="col form-group">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country" placeholder="Country"
-                      data-invalid-message="Invalid country." data-required="country" />
+                    <input disabled type="text" class="form-control" id="country" placeholder="Country"
+                      data-invalid-message="Invalid country name." data-required="country" />
                   </div>
                   <div class="col form-group">
                     <label for="city">City</label>
                     <input disabled type="text" class="form-control" id="city" placeholder="City"
-                      data-invalid-message="Invalid city." data-required="city" />
+                      data-invalid-message="Invalid city name." data-required="city" />
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
