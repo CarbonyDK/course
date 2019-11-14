@@ -18,7 +18,7 @@ const regInputs = [regEmail, regPassword, regPasswordRepeat, first_name, last_na
 
 // Events
 let countriesArr = [];
-initCountries(country).then(data => countriesArr = data);
+initCountries(country, city).then(data => countriesArr = data);
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -89,7 +89,7 @@ function onSetCountry(countryInput, cityInput, countriesArr) {
   } else cityInput.setAttribute('disabled', 'true');
 }
 
-async function initCountries(countryInput) {
+async function initCountries(countryInput, cityInput) {
   try {
     const countries = await getCountries();
     countryInput.removeAttribute('disabled');
@@ -97,7 +97,7 @@ async function initCountries(countryInput) {
       source: countries,
       select: (e, ui) => {
         const countryIndex = countries.indexOf(ui.item.value) + 1;
-        initCities(countryIndex);
+        initCities(cityInput, countryIndex);
       },
     });
     return countries;
