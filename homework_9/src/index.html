@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="login-page-wrapp d-flex">
+    <div class="login-form-wrap d-flex align-items-center">
+      <div class="form-card card ml-auto">
+        <div class="card-body">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login"
+                aria-selected="true">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab"
+                aria-controls="register" aria-selected="false">Register</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+              <h4 class="card-title mt-2">Please Login</h4>
+              <form name="loginForm">
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    placeholder="Enter email" data-required="email"
+                    data-invalid-message="Please provide valid email example@example.com" />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Password"
+                    data-required="password" />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+              <h4 class="card-title mt-2">Please Register</h4>
+              <form name="registerForm">
+                <div class="form-group">
+                  <label for="reg-email">Email address</label>
+                  <input type="email" class="form-control" id="reg-email" aria-describedby="emailHelp"
+                    placeholder="Enter email" data-required="email"
+                    data-invalid-message="Please provide valid email example@example.com" />
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" class="form-control" id="reg-password" placeholder="Password"
+                      data-required="password" />
+                  </div>
+                  <div class="col form-group">
+                    <label for="password-repeat">Repeat Password</label>
+                    <input type="password" class="form-control" id="password-repeat" placeholder="Repeat Password"
+                      data-required="password" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="First Name"
+                      data-invalid-message="Only English or Russian letters. 8-20 chars." data-required="name" />
+                  </div>
+                  <div class="col form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="Last Name"
+                      data-invalid-message="Only English or Russian letters. 8-20 chars." data-required="name" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="number" class="form-control" id="phone" placeholder="Phone Number"
+                      data-invalid-message="Use only valid format: 0661231231" data-required="phone" />
+                  </div>
+                  <div class="col form-group">
+                    <label for="nickname">Nickname</label>
+                    <input type="text" class="form-control" id="nickname" placeholder="Nickname"
+                      data-invalid-message="Please use only English letters and numbers. 5-20 chars."
+                      data-required="nickname" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" id="gender" data-invalid-message="Invalid data. Choose male or female."
+                      data-required="gender">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                  <div class="col form-group">
+                    <label for="birthdate">Birth Date</label>
+                    <input type="date" class="form-control" id="birthdate" placeholder="Birth Date"
+                      data-invalid-message="Use only valid format: 12.12.2000" data-required="birthdate" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <label for="country">Country</label>
+                    <input disabled type="text" class="form-control" id="country" placeholder="Country"
+                      data-invalid-message="Invalid country name." data-required="country" />
+                  </div>
+                  <div class="col form-group">
+                    <label for="city">City</label>
+                    <input disabled type="text" class="form-control" id="city" placeholder="City"
+                      data-invalid-message="Invalid city name." data-required="city" />
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.login-form-wrap -->
+    <div class="login-greeting-screen d-flex align-items-center">
+      <div class="login-greeting-screen-text">
+        <h1 class="login-greeting-screen-title">Welcome to my app</h1>
+        <p class="login-greeting-screen-description">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
+          inventore non accusantium earum, illo dolores reprehenderit laborum
+          ratione quos doloribus repellat eligendi deleniti. Ipsum voluptate
+          ipsa exercitationem eaque totam. A.
+        </p>
+      </div>
+    </div>
+    <!-- /.login-greeting-screen -->
+  </div>
+  <!-- /.login-page-wrapp -->
+</body>
+
+</html>
